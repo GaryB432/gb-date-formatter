@@ -3,12 +3,12 @@
     "declaration": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "noImplicitAny": true,
     "outDir": "./lib",
     "preserveConstEnums": true,
     "removeComments": true,
-    "noImplicitUseStrict": true,
-    "strictNullChecks": true,
+    "noEmitHelpers": true,
+    "strict": true,
+    "importHelpers": true,
     "sourceMap": false // needed for debugging only
   },
   "include": [

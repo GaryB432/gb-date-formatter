@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/GaryB432/gb-date-formatter.svg?branch=master)](https://travis-ci.org/GaryB432/gb-date-formatter)
 
-A partial re-engineering of [Angular1's date formatting](https://docs.angularjs.org/api/ng/filter/date).
+A partial re-engineering of [AngularJs's date formatting](https://docs.angularjs.org/api/ng/filter/date).
 
 ## Install
 
@@ -31,9 +31,9 @@ console.log(formatter.format(new Date("1924-02-25T07:44:40.755Z"), "MMMM y"));
 // February 1924
 ```
 
-### To use the `DateFormatter` class in an Angular2 pipe
+### To use the `DateFormatter` class in an Angular pipe
 
-wrap the gb-date-formatter in an [Angular2 Pipe](https://angular.io/docs/ts/latest/guide/pipes.html)
+wrap the gb-date-formatter in an [Angular Pipe](https://angular.io/docs/ts/latest/guide/pipes.html)
 ```js
 import { Pipe, PipeTransform } from '@angular/core';
 import { DateFormatter, FormatString } from 'gb-date-formatter';
