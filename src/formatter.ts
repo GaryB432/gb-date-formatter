@@ -3,8 +3,19 @@
 import { DateParts } from "./dateparts";
 
 export type FormatString =
-  "EEE" | "MMM" | "MMMM" |
-  "EEE MMM d, y h:mm a" | "MMMM y";
+  "d" |
+  "dd" |
+  "EEE" |
+  "EEE MMM d, y h:mm a" |
+  "M" |
+  "MM" |
+  "M/d/yy" |
+  "MM/dd/yy" |
+  "MMM" |
+  "MMMM" |
+  "MMMM y" |
+  "y" |
+  "yy";
 
 type LongShort = [string, string];
 
@@ -55,17 +66,14 @@ export class DateFormatter {
 
   private doFormat(parts: DateParts, fmt: FormatString): string {
     switch (fmt) {
+      case "d": {
+        return parts.d.toFixed(0);
+      }
+      case "dd": {
+        return DateFormatter.prependZero(parts.d, 2);
+      }
       case "EEE": {
         return dayNames[parts.w][0];
-      }
-      case "MMM": {
-        return monthNames[parts.m][1];
-      }
-      case "MMMM": {
-        return monthNames[parts.m][0];
-      }
-      case "MMMM y": {
-        return `${this.doFormat(parts, "MMMM")} ${parts.y.toFixed(0)}`;
       }
       case "EEE MMM d, y h:mm a": {
         const ps = [
@@ -77,11 +85,53 @@ export class DateFormatter {
         ];
         return ps.join(" ");
       }
+      case "M": {
+        const m = parts.m + 1;
+        return m.toFixed(0);
+      }
+      case "MM": {
+        return DateFormatter.prependZero(parts.m + 1, 2);
+      }
+      case "M/d/yy": {
+        const ps = [
+          this.doFormat(parts, "M"),
+          this.doFormat(parts, "d"),
+          this.doFormat(parts, "yy"),
+        ];
+        return ps.join("/");
+      }
+      case "MM/dd/yy": {
+        const ps = [
+          this.doFormat(parts, "MM"),
+          this.doFormat(parts, "dd"),
+          this.doFormat(parts, "yy"),
+        ];
+        return ps.join("/");
+      }
+      case "MMM": {
+        return monthNames[parts.m][1];
+      }
+      case "MMMM": {
+        return monthNames[parts.m][0];
+      }
+      case "MMMM y": {
+        const ps = [
+          this.doFormat(parts, "MMMM"),
+          this.doFormat(parts, "y"),
+        ];
+        return ps.join(" ");
+      }
+      case "y": {
+        return parts.y.toFixed(0);
+      }
+      case "yy": {
+        return parts.y.toFixed(0).substr(2);
+      }
       default: {
         throw new Error(`The fmt value '${fmt}' is not supported.`);
       }
-    }
 
+    }
   }
 
 }

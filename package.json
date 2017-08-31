@@ -1,6 +1,6 @@
 {
   "name": "gb-date-formatter",
-  "version": "1.5.1",
+  "version": "1.7.0",
   "description": "minimal date formatting",
   "license": "MIT",
   "repository": {
@@ -14,7 +14,7 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "clean": "rimraf lib",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "lint": "tslint --force --format verbose \"src/**/*.ts\"",
     "build": "npm run clean && npm run lint && echo Using TypeScript && tsc --version && tsc --pretty",
     "test": "npm run build && mocha --compilers ts:ts-node/register --recursive test/**/*-spec.ts",
